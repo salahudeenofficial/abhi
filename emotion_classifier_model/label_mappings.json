@@ -1,0 +1,32 @@
+{
+  "label_map": {
+    "anger": 0,
+    "boredom": 1,
+    "empty": 2,
+    "enthusiasm": 3,
+    "fun": 4,
+    "happiness": 5,
+    "hate": 6,
+    "love": 7,
+    "neutral": 8,
+    "relief": 9,
+    "sadness": 10,
+    "surprise": 11,
+    "worry": 12
+  },
+  "id2label": {
+    "0": "anger",
+    "1": "boredom",
+    "2": "empty",
+    "3": "enthusiasm",
+    "4": "fun",
+    "5": "happiness",
+    "6": "hate",
+    "7": "love",
+    "8": "neutral",
+    "9": "relief",
+    "10": "sadness",
+    "11": "surprise",
+    "12": "worry"
+  }
+}

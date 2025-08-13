@@ -1,0 +1,69 @@
+CRITICAL FILES NOT IN GIT REPOSITORY
+====================================
+
+⚠️  IMPORTANT: These files are REQUIRED for app.py to run but are excluded from Git due to size limitations.
+
+MISSING FILES NEEDED FOR INFERENCE:
+-----------------------------------
+
+📁 emotion_classifier_model/
+├── ❌ model.safetensors (267MB)           ← CRITICAL: Main model weights
+├── ❌ pytorch_model.bin (267MB)           ← Alternative format (optional)
+├── ❌ training_args.bin (8KB)             ← Training configuration
+├── ✅ config.json                         ← Included in Git
+├── ✅ tokenizer.json                      ← Included in Git  
+├── ✅ tokenizer_config.json               ← Included in Git
+├── ✅ vocab.txt                           ← Included in Git
+├── ✅ label_mappings.json                 ← Included in Git
+└── ✅ special_tokens_map.json             ← Included in Git
+
+WHAT HAPPENS WITHOUT THESE FILES:
+---------------------------------
+❌ app.py will FAIL with error: "Model not found"
+❌ Cannot load pre-trained weights
+❌ Cannot perform emotion classification
+✅ Training scripts will still work (create new model)
+
+HOW TO GET MISSING FILES:
+------------------------
+Option 1: Train the model yourself
+    python train_distilbert_optimized.py --csv_path EmotionDetection_sample.csv
+
+Option 2: Obtain from model creator
+    - Request emotion_classifier_model/ directory
+    - Ensure model.safetensors is included (267MB)
+    - Copy entire directory to project root
+
+Option 3: Download from cloud storage (if provided)
+    - Google Drive, Dropbox, etc.
+    - Extract to emotion_classifier_model/ directory
+
+VERIFICATION:
+------------
+Check if you have required files:
+    ls -la emotion_classifier_model/
+
+Required output should include:
+    model.safetensors (267MB)
+    config.json
+    label_mappings.json
+    tokenizer files
+
+FILE SIZES:
+----------
+model.safetensors: ~267MB (Main model weights)
+config.json: ~500 bytes
+tokenizer files: ~700KB total
+label_mappings.json: ~300 bytes
+
+WHY EXCLUDED FROM GIT:
+---------------------
+- GitHub file size limit: 100MB per file
+- model.safetensors is 267MB (too large)
+- Repository would be 267MB+ (not practical)
+- Standard practice in ML projects
+
+SOLUTION:
+--------
+Use Git LFS (Large File Storage) or external storage for large model files.
+For production, consider model hosting services like Hugging Face Hub.

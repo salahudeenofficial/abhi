@@ -1,0 +1,68 @@
+DISTILBERT EMOTION CLASSIFIER - QUICK START
+==========================================
+
+REQUIRED FILES:
+- requirements.txt
+- app.py
+- train_distilbert_optimized.py
+- EmotionDetection_sample.csv (or your own dataset)
+
+FOR PRE-TRAINED MODEL (if available):
+- emotion_classifier_model/ directory with:
+  - model.safetensors (267MB trained weights)
+  - config.json
+  - tokenizer files
+  - label_mappings.json
+
+SETUP - OPTION 1 (Use Pre-trained Model):
+1. pip install -r requirements.txt
+2. Copy emotion_classifier_model/ directory to project root
+3. python app.py
+
+SETUP - OPTION 2 (Train from Scratch):
+1. pip install -r requirements.txt
+2. python train_distilbert_optimized.py --csv_path EmotionDetection_sample.csv --epochs 2 --batch_size 8
+3. python app.py
+
+TRAINING (FULL DATASET):
+python train_distilbert_optimized.py --csv_path your_dataset.csv --epochs 3 --batch_size 16
+
+INFERENCE ONLY:
+python app.py
+
+EXPECTED OUTPUT:
+- Model accuracy: 98%+
+- emotion_classifier_model/ directory with trained model
+- Test results and confusion matrix
+
+SYSTEM REQUIREMENTS:
+- Python 3.8+
+- 8GB RAM minimum
+- GPU recommended (CUDA)
+
+DATASET FORMAT:
+CSV with columns: text, Emotion
+Example: "I am happy", happiness
+
+MODEL FILES NEEDED FOR INFERENCE:
+emotion_classifier_model/
+├── model.safetensors (267MB - main model weights)
+├── config.json (model configuration)
+├── tokenizer.json (tokenizer settings)
+├── tokenizer_config.json
+├── vocab.txt (vocabulary file)
+├── label_mappings.json (emotion labels)
+└── special_tokens_map.json
+
+TROUBLESHOOTING:
+- "Model not found": Copy emotion_classifier_model/ directory to project root
+- Memory error: reduce --batch_size to 4
+- No GPU: training will use CPU (slower)
+- Import error: check requirements.txt installation
+- Missing model.safetensors: Train model first or obtain pre-trained model
+
+SHARING MODEL:
+To share your trained model, include the entire emotion_classifier_model/ directory
+(Note: model.safetensors is 267MB and excluded from Git due to size)
+
+For detailed documentation see README.md
